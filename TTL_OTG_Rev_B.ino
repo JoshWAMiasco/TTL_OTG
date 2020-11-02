@@ -79,6 +79,8 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
  *  |--------------------------------------------------------------------------------------------------------------------------------------------|
  */
 
+const byte ROWS = 4; //represent row
+const byte COLS = 4; //represent column
 
 //This Array is use by Keypad Library for reference on Actual keypad mapping. Careful if you want to edit.
  char hexaKeys[ROWS][COLS] = {
@@ -143,8 +145,6 @@ bool result = true;
 bool str = true;
 bool pause = false;
 byte str2 = 0;
-const byte ROWS = 4;
-const byte COLS = 4;
 byte stp = 0;
 byte nxt = 0;
 int CurrentPin;
