@@ -106,7 +106,7 @@ Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS)
 #define Cpin2 A0     // Cpin2     = Count pin 2 for Other binning cathegory is Assign to Analog pin A0
 #define Cpin7 A1     // Cpin7     = Count pin 7 for Other binning cathegory is Assign to Analog pin A1 
 #define Cpin10SOT 12 // Cpin10SOT = Count pin 10 for SOT is Assign to Digital pin 12 of Arduino
-#define Trig A3      // Trig      = Trigger(Connected to pin 2 Trig pin) for 555 Timer. This pin is Connected to Analog pin A3 of Arduino 
+#define Trig A3      // Trig      = Trigger the Reset Pin of 555 Timer (pin 4)
 //*******************************************************
 
 
@@ -209,9 +209,9 @@ void HandlerRun() {
         if(digitalRead(Cpin24EOT) == HIGH ){
           CountEOT += 1;
    
-          analogWrite(Trig,0);
+          analogWrite(Trig,0); // Trigger the reset of 555 timer
           delay(5);
-          analogWrite(Trig,255);
+          analogWrite(Trig,255); // back to defualt status
           End = false;
         }
    }
@@ -386,8 +386,8 @@ lcd.write(byte(0));
         digitalWrite(Cpin10SOT,HIGH);  // Send SOT
         delay(100); // Width of SOT 100 Miliseconds
         
-        //initial of 555 timer state
-        analogWrite(Trig,255);  // Send high on 555 timer for initial output logic 1. 
+        //initial of 555 timer reset pin
+        analogWrite(Trig,255);  // 
         //
         
         lcd.clear();
